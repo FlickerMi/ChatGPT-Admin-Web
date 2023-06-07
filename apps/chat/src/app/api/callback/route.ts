@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
 import { handleCallback } from "@/lib/pay/xunhu";
 import { OrderLogic, SubscriptionLogic } from "database";
-import { prices } from "../../(chat)/pricing/page"
+import { priceList } from "./prices"
 
 /**
  * This is the callback interface for processing payment platforms.
@@ -21,9 +21,9 @@ export async function POST(req: NextRequest) {
 
   let numberOfDay= 1;
 
-  if (totolMoney == prices[1].price.monthly || totolMoney == prices[2].price.monthly) {
+  if (totolMoney == priceList[1].price.monthly || totolMoney == priceList[2].price.monthly) {
     numberOfDay = 30;
-  } else if (totolMoney == prices[1].price.quarterly || totolMoney == prices[2].price.quarterly) {
+  } else if (totolMoney == priceList[1].price.quarterly || totolMoney == priceList[2].price.quarterly) {
     numberOfDay = 90;
   } else {
     numberOfDay = 365;
